@@ -163,3 +163,27 @@ body {
 
 .fade-up { opacity: 0; transform: translateY(20px); transition: 0.5s ease; }
 .fade-up.show { opacity: 1; transform: translateY(0); }
+
+/* Fav yıldız sarı toggle */
+.favorite-icon {
+    color: #ccc; /* başlangıçta gri */
+    cursor: pointer;
+    font-size: 22px;
+}
+.favorite-icon.fas {
+    color: #ffc107 !important; /* Sahibinden sarısı */
+}
+
+/* Share butonu biraz daha büyük ve esnek */
+.share-btn {
+    background: transparent;
+    border: none;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.share-btn svg {
+    width: 24px;
+    height: 24px;
+}
