@@ -51,6 +51,7 @@
     </div>
 
 </main>
+<script>
 document.getElementById("purchaseForm").addEventListener("submit", function(e){
     e.preventDefault();
     document.getElementById("customModal").style.display = "flex";
@@ -60,8 +61,7 @@ function closeModal() {
     document.getElementById("customModal").style.display = "none";
     window.location.href = "index.html"; // Onaydan sonra ana sayfaya döner
 }
-
-
+</script>
 <script src="script.js"></script>
 <div id="customModal" class="modal-overlay">
     <div class="modal-card">
