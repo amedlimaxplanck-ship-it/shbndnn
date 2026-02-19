@@ -157,15 +157,21 @@ body {
 /* TAB BAR */
 
 
-.tab-content {
-  display: none;
-  padding: 15px;
-  background: #fff;
+/* Konumu sekmesi aktifken görünür yap */
+#location.tab-content.active {
+    display: block !important;
+    visibility: visible !important;
 }
 
-.tab-content.active {
-  display: block;
+.map-container {
+    width: 100%;
+    margin-top: 10px;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid #eee;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
+
 
 /* =======================
    DETAILS
@@ -496,11 +502,7 @@ body {
   margin: 20px 0 10px;
 }
 
-.map-container {
-  margin-top: 10px;
-  border-radius: 10px;
-  overflow: hidden;
-}
+
 
 .tabs {
   display: flex;
