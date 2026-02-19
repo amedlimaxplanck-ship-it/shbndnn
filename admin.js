@@ -29,7 +29,13 @@ window.login = async function() {
     await signInWithEmailAndPassword(auth, email, password);
     alert("Giriş başarılı ✅");
   } catch(err) {
-    alert("Giriş başarısız ❌\n" + err.message);
+    let msg = "Giriş başarısız ❌";
+    switch(err.code) {
+      case "auth/wrong-password": msg = "Şifre yanlış ❌"; break;
+      case "auth/user-not-found": msg = "Kullanıcı bulunamadı ❌"; break;
+      case "auth/invalid-email": msg = "Email geçersiz ❌"; break;
+    }
+    alert(msg);
   }
 }
 
@@ -47,7 +53,6 @@ onAuthStateChanged(auth, async (user) => {
 
     await loadAd();
     await loadMessages();
-
   } else {
     document.getElementById("loginArea").style.display = "block";
     document.getElementById("panel").style.display = "none";
