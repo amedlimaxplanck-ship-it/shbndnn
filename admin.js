@@ -1,85 +1,74 @@
-import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-storage.js";
-import { doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
-
-// Firestore ve Storage referanslarını tanımla
-const storage = getStorage();
-const db = getFirestore(app);
-
-async function saveAd() {
-  const title = document.getElementById("title").value;
-  const price = document.getElementById("price").value;
-  const description = document.getElementById("description").value;
-  const imageFile = document.getElementById("image").files[0];
-
-  let imageUrl = "";
-
-  if (imageFile) {
-    const imageRef = ref(storage, `ilanlar/${imageFile.name}`);
-    await uploadBytes(imageRef, imageFile);
-    imageUrl = await getDownloadURL(imageRef);
-  }
-
-  await setDoc(doc(db, "ilan", "ilan1"), {
-    title,
-    price,
-    description,
-    imageUrl
-  });
-
-  alert("İlan kaydedildi ✅");
-}
-
+// admin.js
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
-import { getFirestore, doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+import { getFirestore, doc, setDoc, getDoc, collection, query, orderBy, getDocs } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-storage.js";
 
+// Firebase config
 const firebaseConfig = {
   apiKey: "AIzaSyD-yn67AhKbiTExyrffBok2nthXhV_hL88",
   authDomain: "shbndn-12640.firebaseapp.com",
   projectId: "shbndn-12640",
-  storageBucket: "shbndn-12640.firebasestorage.app",
+  storageBucket: "shbndn-12640.appspot.com",
   messagingSenderId: "579355427179",
   appId: "1:579355427179:web:2e7fafee98f9a7da2d0c2e",
 };
 
+// Firebase initialize
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 const storage = getStorage(app);
 
+// LOGIN
 window.login = async function() {
   const email = document.getElementById("email").value;
   const password = document.getElementById("password").value;
-  await signInWithEmailAndPassword(auth, email, password);
+
+  try {
+    await signInWithEmailAndPassword(auth, email, password);
+    alert("Giriş başarılı ✅");
+  } catch(err) {
+    alert("Giriş başarısız ❌\n" + err.message);
+  }
 }
 
+// LOGOUT
 window.logout = async function() {
   await signOut(auth);
 }
 
-onAuthStateChanged(auth, (user) => {
+// OnAuthStateChanged
+onAuthStateChanged(auth, async (user) => {
   if (user) {
     document.getElementById("loginArea").style.display = "none";
     document.getElementById("panel").style.display = "block";
-    loadAd();
+    document.getElementById("logoutBtn").style.display = "inline-block";
+
+    await loadAd();
+    await loadMessages();
+
   } else {
     document.getElementById("loginArea").style.display = "block";
     document.getElementById("panel").style.display = "none";
+    document.getElementById("logoutBtn").style.display = "none";
   }
 });
 
+// İLAN VERİLERİ
 async function loadAd() {
   const docRef = doc(db, "ilan", "ilan1");
   const docSnap = await getDoc(docRef);
+
   if (docSnap.exists()) {
     const data = docSnap.data();
-    document.getElementById("title").value = data.title;
-    document.getElementById("price").value = data.price;
-    document.getElementById("description").value = data.description;
+    document.getElementById("title").value = data.title || "";
+    document.getElementById("price").value = data.price || "";
+    document.getElementById("description").value = data.description || "";
   }
 }
 
+// İLAN KAYDETME
 window.saveAd = async function() {
   const title = document.getElementById("title").value;
   const price = document.getElementById("price").value;
@@ -89,7 +78,7 @@ window.saveAd = async function() {
   let imageUrl = "";
 
   if (file) {
-    const storageRef = ref(storage, "ilan.jpg");
+    const storageRef = ref(storage, `ilanlar/${file.name}`);
     await uploadBytes(storageRef, file);
     imageUrl = await getDownloadURL(storageRef);
   }
@@ -101,15 +90,17 @@ window.saveAd = async function() {
     imageUrl
   });
 
-  alert("İlan güncellendi!");
+  alert("İlan güncellendi ✅");
 }
 
-// Mesajları listeleme
+// MESAJLARI ÇEKME
 async function loadMessages() {
   const messagesDiv = document.getElementById("messages");
   messagesDiv.innerHTML = "";
 
-  const querySnapshot = await db.collection("mesajlar").orderBy("tarih","desc").get();
+  const q = query(collection(db, "mesajlar"), orderBy("tarih", "desc"));
+  const querySnapshot = await getDocs(q);
+
   querySnapshot.forEach(docSnap => {
     const data = docSnap.data();
     const msgDiv = document.createElement("div");
@@ -122,18 +113,3 @@ async function loadMessages() {
     messagesDiv.appendChild(msgDiv);
   });
 }
-
-// onAuthStateChanged içine ekle
-onAuthStateChanged(auth, (user) => {
-  if (user) {
-    document.getElementById("loginArea").style.display = "none";
-    document.getElementById("panel").style.display = "block";
-    document.getElementById("logoutBtn").style.display = "inline-block";
-    loadAd();
-    loadMessages();
-  } else {
-    document.getElementById("loginArea").style.display = "block";
-    document.getElementById("panel").style.display = "none";
-    document.getElementById("logoutBtn").style.display = "none";
-  }
-});
