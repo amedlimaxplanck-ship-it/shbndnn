@@ -1,16 +1,17 @@
-// script.js - Senin istediğin gibi düzeltilmiş hali
+// script.js - Temiz ve çalışan hali
 
 // =======================
-// Resimler (aynı klasörde olduğu için direkt isim)
+// RESİMLER (aynı klasörde olduğu için direkt isim)
 const slides = ["ps5-1.jpg", "ps5-2.jpg", "ps5-3.jpg"];
 
-// Slider + Indicator
+// =======================
+// Galeri (yatay kaydırılır thumbnail + 1/3 gösterge)
 const slider = document.getElementById("slider");
 const photoIndicator = document.getElementById("photoIndicator");
 
 if (slider) {
   slider.innerHTML = "";
-  slides.forEach(src => {
+  slides.forEach((src, index) => {
     const img = document.createElement("img");
     img.src = src;
     img.className = "slide";
@@ -24,29 +25,27 @@ if (slider) {
 }
 
 // =======================
-// Favlama - İçi dolu beyaz yıldız, tıklayınca sarı, tekrar tıklayınca beyaz
+// Favlama (içi dolu beyaz yıldız → sarı → tekrar beyaz)
 const favStar = document.getElementById("favStar");
 if (favStar) {
   let isFavorite = localStorage.getItem("fav_ps5") === "true";
+  favStar.classList.add("fas"); // başlangıçta dolu
+
   if (isFavorite) {
-    favStar.style.color = "#ffc107"; // sarı
+    favStar.style.color = "#ffc107";
   } else {
-    favStar.style.color = "#ffffff"; // beyaz dolu
+    favStar.style.color = "#ffffff";
   }
 
   favStar.addEventListener("click", () => {
     isFavorite = !isFavorite;
-    if (isFavorite) {
-      favStar.style.color = "#ffc107"; // sarı
-    } else {
-      favStar.style.color = "#ffffff"; // beyaz dolu
-    }
+    favStar.style.color = isFavorite ? "#ffc107" : "#ffffff";
     localStorage.setItem("fav_ps5", isFavorite);
   });
 }
 
 // =======================
-// Share butonu (senin SVG'li hali)
+// Share butonu
 const shareBtn = document.querySelector(".share-btn");
 if (shareBtn) {
   shareBtn.addEventListener("click", () => {
@@ -64,7 +63,7 @@ if (shareBtn) {
 }
 
 // =======================
-// Tab sistemi (İlan Bilgileri / Konumu)
+// Tab sistemi
 const tabs = document.querySelectorAll('.tab');
 const contents = document.querySelectorAll('.tab-content');
 tabs.forEach(tab => {
@@ -77,6 +76,7 @@ tabs.forEach(tab => {
   });
 });
 
+// =======================
 // Açıklama toggle
 const toggleBtn = document.getElementById("toggleDesc");
 const descText = document.getElementById("descText");
