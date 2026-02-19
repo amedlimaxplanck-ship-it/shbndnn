@@ -4,7 +4,7 @@
 const thumbnails = document.getElementById('thumbnails');
 const mainPhoto = document.getElementById('mainPhoto');
 const photoIndicator = document.getElementById('photoIndicator');
-const resimler = ["ps5-1.jpg", "ps5-2.jpg", "ps5-3.jpg"];
+const = ["ps5-1.jpg", "ps5-2.jpg", "ps5-3.jpg"];
 
 if (thumbnails && mainPhoto && resimler.length > 0) {
     mainPhoto.src = resimler[0];
