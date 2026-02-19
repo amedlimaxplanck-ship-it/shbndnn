@@ -103,9 +103,11 @@ body {
 
 .price-block {
   background: #fff;
-  padding: 14px 8px;
-  margin-bottom: -4px;
+  padding: 16px; 
+  margin-bottom: 8px; /* Altındaki başlıkla veya tablarla arasına mesafe koyar */
+  border-bottom: 1px solid #f0f0f0;
 }
+
 
 
 
