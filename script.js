@@ -2,11 +2,10 @@
 
 // Resimler (senin klasöründeki 3 tane)
 const resimler = [
-    "resimler/ps5-1.jpg",
-    "resimler/ps5-2.jpg",
-    "resimler/ps5-3.jpg"
+    "ps5-1.jpg",
+    "ps5-2.jpg",
+    "ps5-3.jpg"
 ];
-
 const slider = document.getElementById("slider");
 const slides = document.querySelectorAll(".slide");
 const indicator = document.getElementById("photoIndicator");
