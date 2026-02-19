@@ -750,3 +750,17 @@ body {
 .description {
     margin-bottom: 12px;
 }
+
+/* =======================
+   BOŞLUK DÜZELTMESİ
+======================= */
+
+/* Param Güvende ile Satıcı Kartı arası 20px boşluk */
+.description {
+    margin-bottom: 20px !important;
+}
+
+/* Satıcı Kartı ile Soru-Cevap arası 20px boşluk */
+.seller-card {
+    margin-bottom: 20px !important;
+}
