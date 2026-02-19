@@ -1,29 +1,21 @@
-// script.js - Temiz ve çalışan hali
+// script.js - Güncellenmiş Üst Kısım
 
-// =======================
-// RESİMLER (aynı klasörde olduğu için direkt isim)
 const slides = ["ps5-1.jpg", "ps5-2.jpg", "ps5-3.jpg"];
-
-// =======================
-// 1. Resim Listesi (Klasördeki isimlerle birebir aynı olmalı)
-const slides = ["ps5-1.jpg", "ps5-2.jpg", "ps5-3.jpg"];
-
 const slider = document.getElementById("slider");
-const indicators = document.querySelectorAll(".photo-indicator"); // Class olarak seçtik
+// HTML'de class kullandığımız için querySelector ile seçiyoruz
+const indicator = document.querySelector(".photo-indicator");
 
 if (slider) {
-    // Önce içini dolduralım
+    // Resimleri slider içine basıyoruz
     slider.innerHTML = slides.map(src => `<img src="${src}" class="slide">`).join('');
 
     // Kaydırma fonksiyonu
     slider.addEventListener("scroll", () => {
-        // Genişliği tam sayıya yuvarlayarak hangi fotoda olduğumuzu buluyoruz
-        const index = Math.round(slider.scrollLeft / slider.clientWidth);
-        
-        // Tüm indikatörleri (hem alttaki hem varsa üstteki) güncelle
-        indicators.forEach(el => {
-            el.textContent = `${index + 1} / ${slides.length}`;
-        });
+        // Fotoğrafın genişliğine göre kaçıncı sırada olduğumuzu hesapla
+        const index = Math.round(slider.scrollLeft / slider.offsetWidth);
+        if (indicator) {
+            indicator.textContent = `${index + 1} / ${slides.length}`;
+        }
     });
 }
 
