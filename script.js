@@ -116,4 +116,27 @@ if (toggleBtn) {
             toggleBtn.innerText = "Daha fazla göster";
         }
     });
+    
 }
+
+// Firestore importları ve firebaseConfig daha önce olmalı
+// import { initializeApp } from "...";
+// import { getFirestore, doc, getDoc } from "...";
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+async function loadAd() {
+  const docRef = doc(db, "ilan", "ilan1");
+  const docSnap = await getDoc(docRef);
+
+  if (docSnap.exists()) {
+    const data = docSnap.data();
+    document.getElementById("ilan-baslik").innerText = data.title;
+    document.getElementById("ilan-fiyat").innerText = data.price;
+    document.getElementById("ilan-aciklama").innerText = data.description;
+    if (data.imageUrl) document.getElementById("ilan-img").src = data.imageUrl;
+  }
+}
+
+window.onload = loadAd; // sayfa yüklendiğinde ilan çekilsin
