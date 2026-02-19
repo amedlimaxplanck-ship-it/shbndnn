@@ -67,22 +67,22 @@ const contents = document.querySelectorAll('.tab-content');
 
 tabs.forEach(tab => {
     tab.addEventListener('click', () => {
-        // Tüm tabları temizle
+        const targetId = tab.getAttribute('data-tab');
+        
+        // Aktif tab butonunu değiştir
         tabs.forEach(t => t.classList.remove('active'));
-        contents.forEach(c => c.classList.remove('active'));
-
-        // Tıklanan tabı aktif yap
         tab.classList.add('active');
 
-        // Karşılık gelen içeriği göster
-        const targetId = tab.getAttribute('data-tab');
-        const targetContent = document.getElementById(targetId);
-
-        if (targetContent) {
-            targetContent.classList.add('active');
-        }
+        // İçeriği değiştir
+        contents.forEach(c => {
+            c.classList.remove('active');
+            if(c.id === targetId) {
+                c.classList.add('active');
+            }
+        });
     });
 });
+
 
 // =======================
 // Açıklama toggle
