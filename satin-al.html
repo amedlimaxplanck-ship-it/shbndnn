@@ -51,12 +51,16 @@
     </div>
 
 </main>
-<script>
 document.getElementById("purchaseForm").addEventListener("submit", function(e){
     e.preventDefault();
-    alert("Siparişiniz alınmıştır 🎉");
+    document.getElementById("customModal").style.display = "flex";
 });
-</script>
+
+function closeModal() {
+    document.getElementById("customModal").style.display = "none";
+    window.location.href = "index.html"; // Onaydan sonra ana sayfaya döner
+}
+
 
 <script src="script.js"></script>
 <div id="customModal" class="modal-overlay">
