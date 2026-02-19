@@ -1,0 +1,600 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Helvetica Neue", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+  background: #f2f2f2;
+  color: #333;
+  font-size: 15px;
+}
+
+/* =======================
+   TOP BAR
+======================= */
+
+.top-bar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 50px;
+  background: #0060a8;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  z-index: 100;
+  font-weight: 600;
+}
+
+.back-link {
+  color: white;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.top-actions {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.top-actions i,
+.share-btn {
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+/* =======================
+   CONTENT
+======================= */
+
+.main-content {
+    padding: 50px 0 100px;
+}
+
+/* =======================
+   CATEGORY
+======================= */
+
+.category-path {
+  background: #fff;
+  padding: 12px 16px;
+  font-size: 13px;
+  color: #0060a8;
+  margin-bottom: 2px;
+}
+
+/* =======================
+   GALLERY
+======================= */
+
+.gallery {
+  position: relative; /* önemli */
+  background: #fff;
+}
+.main-photo {
+  width: 100%;
+  max-height: 420px;
+  object-fit: contain;
+  display: block;
+}
+
+.photo-indicator {
+  position: absolute;
+  bottom: 10px;        /* en alt */
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0,0,0,0.65);
+  color: #fff;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+}
+
+/* =======================
+   PRICE
+======================= */
+
+.price-block {
+  background: #fff;
+  padding: 14px 8px;
+  margin-bottom: -4px;
+}
+
+
+
+.price {
+  font-size: 26px;
+  font-weight: 700;
+  color: #0060a8;
+  margin-bottom: 6px;
+}
+
+.ad-title {
+  font-size: 17px;
+  font-weight: 600;
+  margin: 0;
+  margin-bottom: 30px;
+}
+
+
+/* TAB CONTAINER */
+.tabs {
+  display: flex;
+  width: 100%;
+  background: #fff;
+  border-bottom: 2px solid #ffc107; /* alttaki sarı çizgi */
+}
+
+/* TAB BUTTON */
+.tab {
+  flex: 1;
+  padding: 14px 0;
+  text-align: center;
+  font-weight: 600;
+  font-size: 14px;
+  border: 1px solid #e0e0e0;
+  border-bottom: none;
+  background: #fff;
+  color: #000;
+}
+
+/* AKTİF TAB */
+.tab.active {
+  background: #ffc107;
+  color: #000;
+  border: 1px solid #ffc107;
+  border-bottom: none;
+}
+/* TAB BAR */
+
+
+.tab-content {
+  display: none;
+  padding: 15px;
+  background: #fff;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+/* =======================
+   DETAILS
+======================= */
+
+.details table {
+  width: 100%;
+}
+
+.details td {
+  padding: 10px 0;
+}
+
+.details td:first-child {
+  padding-left: 0;
+}
+
+.details td:last-child {
+  text-align: right;
+  padding-right: 0;
+}
+
+.detail-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid #f0f0f0;
+  font-size: 14px;
+}
+
+.detail-row span:first-child {
+  color: #777;
+}
+
+.detail-row span:last-child {
+  font-weight: 500;
+  color: #222;
+}
+/* =======================
+   DESCRIPTION
+======================= */
+
+.description {
+  font-size: 14px;
+}
+.description-box {
+  margin-bottom: 20px;
+}
+
+#descText {
+  max-height: 60px;
+  overflow: hidden;
+  transition: 0.3s ease;
+  font-size: 14px;
+  color: #444;
+}
+
+#descText.expanded {
+  max-height: 500px;
+}
+
+.desc-toggle {
+  background: none;
+  border: none;
+  color: #0060a8;
+  font-weight: 600;
+  font-size: 13px;
+  margin-top: 6px;
+  cursor: pointer;
+}
+/* =======================
+   QNA
+======================= */
+
+.qna h3 {
+  font-size: 16px;
+  margin-bottom: 12px;
+}
+
+.qna-item {
+  padding: 10px 0;
+  border-bottom: 1px solid #eee;
+  font-size: 13px;
+}
+
+/* =======================
+   SELLER
+======================= */
+
+.seller-card {
+  background: #fff;
+  padding: 16px;
+  margin-bottom: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.seller-btn {
+  border: 1px solid #0060a8;
+  color: #0060a8;
+  background: #fff;
+  padding: 8px 12px;
+  font-size: 13px;
+  font-weight: 600;
+  border-radius: 4px;
+}
+
+/* =======================
+   FAVORITE
+======================= */
+
+.favorite-icon {
+  color: #fff;
+}
+
+.favorite-icon.active {
+  color: #ffc107;
+}
+
+/* =======================
+   BOTTOM BAR
+======================= */
+
+.bottom-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: #fff;
+  display: flex;
+  gap: 10px;
+  padding: 10px 12px;
+  box-shadow: 0 -2px 8px rgba(0,0,0,0.08);
+  z-index: 200;
+}
+
+.bottom-bar button {
+  flex: 1;
+  height: 48px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.ara-btn {
+  background: #0060a8;
+  color: #fff;
+  border: none;
+}
+
+.soru-btn {
+  background: #0060a8;
+  color: #fff;
+  border: none;
+}
+
+.satinal-btn {
+  background: #00bfa5;
+  color: #fff;
+  border: none;
+}
+
+.slider {
+  display: flex;
+  overflow-x: scroll;
+  scroll-snap-type: x mandatory;
+}
+
+.slide {
+  min-width: 100%;
+  height: 420px;
+  object-fit: cover;
+  scroll-snap-align: start;
+}
+
+.slider {
+  display: flex;
+  overflow-x: scroll;
+  scroll-snap-type: x mandatory;
+
+  scrollbar-width: none;      /* Firefox */
+  -ms-overflow-style: none;   /* IE */
+}
+
+.slider::-webkit-scrollbar {
+  display: none;              /* Chrome, Safari */
+}
+
+.location-centered {
+  background: #fff;
+  padding: 14px 16px;
+  text-align: center;
+  font-size: 14px;
+}
+
+.fade-up {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: 0.5s ease;
+}
+
+.fade-up.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.order-card,
+.info-card,
+.purchase-card {
+  background: #fff;
+  padding: 16px;
+  margin-bottom: 12px;
+}
+
+.order-title {
+  font-size: 14px;
+  margin-bottom: 12px;
+}
+
+.order-product {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.order-product img {
+  width: 70px;
+  border-radius: 6px;
+}
+
+.order-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 6px 0;
+  font-size: 14px;
+}
+
+.order-row.total {
+  font-weight: 700;
+  border-top: 1px solid #eee;
+  margin-top: 6px;
+  padding-top: 10px;
+}
+
+
+.info-item {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.info-icon svg {
+  width: 24px;
+  height: 24px;
+}
+
+.info-title {
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.info-text {
+  font-size: 13px;
+  color: #666;
+}
+
+
+.payment-section {
+  margin: 16px 0;
+}
+
+.iban-box {
+  background: #f8f9fa;
+  padding: 12px;
+  border-radius: 8px;
+}
+
+.iban-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 6px;
+}
+
+#ibanText {
+  flex: 1;
+  word-break: break-all;
+  font-weight: 600;
+  font-size: 13px;
+}
+
+#copyIbanBtn {
+  background: #20c997;
+  color: white;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+
+.odeme-btn,
+.complete-btn {
+  width: 100%;
+  height: 48px;
+  background: #00bfa5;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+}
+
+.share-btn {
+  background: transparent;
+  border: none;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.section-title {
+  font-size: 16px;
+  font-weight: 700;
+  margin: 20px 0 10px;
+}
+
+.map-container {
+  margin-top: 10px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.tabs {
+  display: flex;
+  gap: 6px;
+  padding: 0 6px;
+  background: #fff;
+  border-bottom: 2px solid #ffc107;
+}
+
+.tab {
+  flex: 1;
+  height: 42px;              /* daha estetik yükseklik */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13.5px;
+  letter-spacing: 0.2px;
+  font-weight: 600;
+  border: 1px solid #ddd;
+  border-bottom: none;
+  background: #fff;
+  color: #000;
+  border-radius: 8px 8px 0 0;
+  transition: 0.2s ease;
+}
+
+/* Hover efekti */
+.tab:not(.active):hover {
+  background: #f7f7f7;
+}
+
+/* Aktif */
+.tab.active {
+  background: #ffc107;
+  border: 1px solid #ffc107;
+  border-bottom: none;
+  color: #000;
+}
+
+
+.purchase-card input,
+.purchase-card textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.purchase-card label {
+  font-size: 13px;
+  font-weight: 600;
+  display: block;
+  margin-bottom: 4px;
+}
+
+
+.ilan-no {
+  color: #e60000;   /* sabit kırmızı */
+  font-weight: 700; /* biraz belirgin */
+  
+}
+
+.category-path,
+.tab-content,
+.location-centered,
+.seller-card,
+.order-card,
+.info-card,
+.purchase-card {
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+.gallery {
+  position: relative;
+}
+
+.secure-badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 20px;
+
+  background: rgba(0, 191, 165, 0.35); /* su yeşili */
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}

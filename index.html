@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>İlan Detayı</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+
+
+</head>
+<body>
+
+<header class="top-bar">
+    <a href="https://www.sahibinden.com" class="back-link">
+        <i class="fas fa-chevron-left"></i>
+    </a>
+
+    <span>İlan Detayı</span>
+
+    <div class="top-actions">
+
+<button class="share-btn">
+  <svg viewBox="0 0 24 24"
+       stroke="#ffffff"
+       stroke-width="1.5"
+       fill="none"
+       stroke-linecap="round"
+       stroke-linejoin="round"
+       width="22"
+       height="22">
+    <circle cx="18" cy="5" r="2.5"></circle>
+    <circle cx="6" cy="12" r="2.5"></circle>
+    <circle cx="18" cy="19" r="2.5"></circle>
+    <line x1="8.5" y1="13" x2="15.5" y2="17"></line>
+    <line x1="15.5" y1="7" x2="8.5" y2="11"></line>
+  </svg>
+</button>
+
+        <i class="fa-solid fa-star favorite-icon" id="favStar"></i>
+
+    </div>
+</header>
+
+
+
+<main class="main-content">
+  <div class="gallery">
+    <div class="secure-badge">
+    <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16">
+        <path d="M12 2l7 4v6c0 5-3.5 8-7 10-3.5-2-7-5-7-10V6l7-4z"/>
+        <path d="M9 12l2 2 4-4"/>
+    </svg>
+    <span>Param Güvende</span>
+</div>
+
+    <div class="slider" id="slider">
+        <img src="resimler/ps5-1.jpg" class="slide">
+        <img src="resimler/ps5-2.jpg" class="slide">
+        <img src="resimler/ps5-3.jpg" class="slide">
+    </div>
+
+    <div class="photo-indicator" id="photoIndicator">1 / 3</div>
+</div>
+       <!-- JS dolduracak -->
+       
+<div class="category-path">
+    <a href="https://www.sahibinden.com/ikinci-el-ve-sifir-alisveris" target="_blank">
+        İkinci El ve Sıfır Alışveriş
+    </a> >
+    <a href="https://www.sahibinden.com/oyunculara-ozel" target="_blank">
+        Oyunculara Özel
+    </a> >
+    <a href="https://www.sahibinden.com/oyun-konsolu" target="_blank">
+        Oyun Konsolu
+    </a> >
+    <a href="https://www.sahibinden.com/playstation-5" target="_blank">
+        PlayStation 5
+    </a>
+</div>
+
+<div class="location-centered">
+    <a href="https://www.google.com/maps?q=Osmanağa+Kadıköy+İstanbul" target="_blank">
+        İstanbul / Kadıköy / Osmanağa Mh.
+    </a>
+</div>
+
+
+<div class="tabs">
+    <button class="tab active" data-tab="info">İlan Bilgileri</button>
+    <button class="tab" data-tab="location">Konumu</button>
+</div>
+
+<div id="info" class="tab-content active">
+
+   <div class="price-block fade-up">
+        <div class="price">23.999 TL</div>
+   </div>   <!-- BUNU EKLE -->
+
+
+
+    <h1 class="ad-title">
+        PS5 DİJİTAL SLİM 2 YIL GARANTİLİ RED GRİPS HDY KAHRAMAN KONSOL
+    </h1>
+
+<div class="description-box">
+    <p id="descText">
+        Öncelikle hayırlı ve mutlu günler dilerim.
+        Toplam 310 adet laptop satıp 140 değerlendirmeden 5 yıldız üzerinden 4.8 yıldız ortalamaya sahibim...
+    </p>
+
+    <button type="button" id="toggleDesc" class="desc-toggle">
+        Daha fazla göster
+    </button>
+</div>
+
+  <div class="details fade-up">
+        <table>
+            <tr><td>İlan Tarihi</td><td>17 Şubat 2026</td></tr>
+            <tr>
+    <td>İlan No</td>
+    <td><span class="ilan-no">1199103017</span></td>
+</tr>
+            <tr><td>Model</td><td>Dijital Sürüm</td></tr>
+            <tr><td>Türü</td><td>Slim</td></tr>
+            <tr><td>Hafıza</td><td>1 TB</td></tr>
+            <tr><td>Garanti</td><td>İthalatçı Garantili</td></tr>
+            <tr><td>Kimden</td><td>Mağazadan</td></tr>
+            <tr><td>Durumu</td><td>Sıfır</td></tr>
+        </table>
+    </div>
+
+    <div class="description">
+        <p>Mağaza bu ürün için Param Güvende hizmeti ile gönderim yapmaktadır.</p>
+    </div>
+
+  <div class="seller-card fade-up">
+        <div class="seller-left">
+            <div class="seller-name">Kahraman Elektronik</div>
+            <div class="seller-info">Mağaza • 2 yıldır sahibinden'de</div>
+        </div>
+        <button class="seller-btn">Mağazaya Git</button>
+    </div>
+
+  <div class="qna fade-up">
+        <h3>SORU-CEVAP</h3>
+        <div class="qna-item">
+            <div class="user">Kayra A.</div>
+            <p>Tablet ile takas olur mu?</p>
+            <div class="time">4 gün önce</div>
+        </div>
+    </div>
+
+</div>
+
+
+   
+ 
+  <div id="location" class="tab-content">
+   <div class="map-label">Kadıköy / İstanbul</div>
+
+  <div class="location-box">
+   <iframe
+    src="https://www.google.com/maps?q=Kadıköy,İstanbul&output=embed"
+    width="100%"
+    height="260"
+    style="border:0; border-radius:8px;"
+    loading="lazy"
+    allowfullscreen>
+    
+   </iframe>
+ 
+ </div>
+</div>
+
+
+<footer class="bottom-bar">
+    <button class="ara-btn">Ara</button>
+    <button class="soru-btn">Soru Sor</button>
+    <button class="satinal-btn" onclick="window.location.href='urun-bilgileri.html'">
+    Satın Al
+</button>
+</footer>
+
+<!-- Zoom modal -->
+<div id="zoomModal" class="zoom-modal">
+    <span class="close-modal" id="closeModal">×</span>
+    <img id="zoomedPhoto" class="zoomed-img">
+</div>
+
+
+
+<script src="script.js"></script>
+</body>
+</html>

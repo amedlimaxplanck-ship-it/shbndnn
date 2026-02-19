@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Satın Al</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="top-bar">
+    <a href="urun-bilgileri.html" class="back-link">←</a>
+        
+    </a>
+    <span>Satın Al</span>
+    <div></div>
+</header>
+
+<main class="main-content">
+
+    <div class="purchase-card">
+        <h2>Bilgilerinizi Girin</h2>
+
+        <form id="purchaseForm">
+            <label>Ad Soyad</label>
+            <input type="text" required>
+
+            <label>Telefon</label>
+            <input type="tel" required>
+
+            <label>Adres</label>
+            <textarea rows="3" required></textarea>
+
+            <!-- IBAN Ödeme Alanı -->
+          <div class="payment-section">
+
+    <h3>Banka Havalesi ile Ödeme</h3>
+
+    <div class="iban-row">
+        <span id="ibanText">TR12 3456 7890 1234 5678 9012 34</span>
+        <button type="button" id="copyIbanBtn">Kopyala</button>
+    </div>
+
+</div>
+            </div>
+
+            <button type="submit" class="complete-btn">
+                Siparişi Tamamla
+            </button>
+        </form>
+    </div>
+
+</main>
+<script>
+document.getElementById("purchaseForm").addEventListener("submit", function(e){
+    e.preventDefault();
+    alert("Siparişiniz alınmıştır 🎉");
+});
+</script>
+
+<script src="script.js"></script>
+
+</body>
+</html>

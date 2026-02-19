@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Panel</title>
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+
+<header>
+  <h1>Maşallah bu panele</h1>
+  <button id="logoutBtn" onclick="logout()" class="btn logout-btn" style="display:none;">Çıkış</button>
+</header>
+
+<div id="loginArea" class="login-box">
+  <h2>Giriş Yap</h2>
+  <input type="email" id="email" placeholder="Email" class="input-field">
+  <input type="password" id="password" placeholder="Şifre" class="input-field">
+  <button onclick="login()" class="btn">Giriş</button>
+</div>
+
+<div id="panel" style="display:none;">
+  <h2>İlan Düzenle</h2>
+
+  <input type="text" id="title" placeholder="Başlık" class="input-field">
+  <input type="text" id="price" placeholder="Fiyat" class="input-field">
+  <textarea id="description" placeholder="Açıklama" class="input-field"></textarea>
+  <input type="file" id="image" class="input-field">
+
+  <button onclick="saveAd()" class="btn">Kaydet</button>
+
+  <h2 style="margin-top:30px;">Gelen Mesajlar</h2>
+  <div id="messages"></div>
+</div>
+
+<script type="module" src="admin.js"></script>
+
+</body>
+</html>
