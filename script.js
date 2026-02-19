@@ -140,3 +140,24 @@ async function loadAd() {
 }
 
 window.onload = loadAd; // sayfa yüklendiğinde ilan çekilsin
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+async function loadAd() {
+  const docRef = doc(db, "ilan", "ilan1");
+  const docSnap = await getDoc(docRef);
+
+  if (docSnap.exists()) {
+    const data = docSnap.data();
+    document.getElementById("ilan-baslik").innerText = data.title;
+    document.getElementById("ilan-fiyat").innerText = data.price;
+    document.getElementById("ilan-aciklama").innerText = data.description;
+    if (data.imageUrl) document.getElementById("ilan-img").src = data.imageUrl;
+  }
+}
+
+window.onload = loadAd;
