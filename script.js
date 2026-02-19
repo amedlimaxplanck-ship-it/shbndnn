@@ -22,11 +22,7 @@ const db = getFirestore(app);
 // Slider Resimleri
 // =======================
 const slider = document.getElementById("slider");
-const slides = [
-  "ps5-1.jpg",
-  "ps5-2.jpg",
-  "ps5-3.jpg"
-];
+const slides = ["ps5-1.jpg", "ps5-2.jpg", "ps5-3.jpg"];
 
 if (slider) {
   slider.innerHTML = "";
@@ -38,7 +34,6 @@ if (slider) {
   });
 
   const indicator = document.getElementById("photoIndicator");
-
   slider.addEventListener("scroll", () => {
     const index = Math.round(slider.scrollLeft / slider.clientWidth);
     indicator.textContent = `${index + 1} / ${slides.length}`;
@@ -91,6 +86,7 @@ if (toggleBtn) {
 // =======================
 const tabs = document.querySelectorAll('.tab');
 const contents = document.querySelectorAll('.tab-content');
+
 tabs.forEach(tab => {
   tab.addEventListener('click', () => {
     tabs.forEach(t => t.classList.remove('active'));
