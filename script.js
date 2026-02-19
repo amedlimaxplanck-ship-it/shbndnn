@@ -2,22 +2,16 @@
 
 const slides = ["ps5-1.jpg", "ps5-2.jpg", "ps5-3.jpg"];
 const slider = document.getElementById("slider");
-// HTML'de class kullandığımız için querySelector ile seçiyoruz
 const indicator = document.querySelector(".photo-indicator");
 
 if (slider) {
-    // Resimleri slider içine basıyoruz
     slider.innerHTML = slides.map(src => `<img src="${src}" class="slide">`).join('');
-
-    // Kaydırma fonksiyonu
     slider.addEventListener("scroll", () => {
-        // Fotoğrafın genişliğine göre kaçıncı sırada olduğumuzu hesapla
         const index = Math.round(slider.scrollLeft / slider.offsetWidth);
-        if (indicator) {
-            indicator.textContent = `${index + 1} / ${slides.length}`;
-        }
+        if (indicator) indicator.textContent = `${index + 1} / ${slides.length}`;
     });
 }
+
 
 
 
