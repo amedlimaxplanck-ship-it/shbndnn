@@ -1,20 +1,6 @@
+script.js
+
 // script.js
-
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
-
-// Firebase config
-const firebaseConfig = {
-  apiKey: "...",
-  authDomain: "...",
-  projectId: "...",
-  storageBucket: "...",
-  messagingSenderId: "...",
-  appId: "..."
-};
-
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
 
 // =======================
 // Slider Resimleri
@@ -111,31 +97,14 @@ tabs.forEach(tab => {
 // =======================
 // Admin form (yalnızca form gönderme)
 // =======================
-import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
-
-const db = getFirestore(app); // app Firebase initialize edilmiş olmalı
-
-document.getElementById("purchaseForm").addEventListener("submit", async function(e){
+const purchaseForm = document.getElementById("purchaseForm");
+if (purchaseForm) {
+  purchaseForm.addEventListener("submit", function(e){
     e.preventDefault();
-
-    const ad = this.querySelector('input[type="text"]').value;
-    const telefon = this.querySelector('input[type="tel"]').value;
-    const adres = this.querySelector('textarea').value;
-
-    try {
-        await addDoc(collection(db, "siparisler"), {
-            ad,
-            telefon,
-            adres,
-            tarih: serverTimestamp()
-        });
-
-        alert("Siparişiniz gönderildi ✅");
-        this.reset();
-    } catch(err) {
-        alert("Hata oluştu ❌ " + err.message);
-    }
-});
+    alert("Siparişiniz alınmıştır 🎉");
+    purchaseForm.reset();
+  });
+}
 
 // =======================
 // Photo fade-up efekti
