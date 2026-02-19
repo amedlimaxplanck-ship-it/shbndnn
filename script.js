@@ -63,17 +63,28 @@ if (shareBtn) {
 }
 
 // =======================
-// Tab sistemi
+// Tab Sistemi (İlan Bilgileri / Konumu) - DÜZELTİLDİ
+// =======================
 const tabs = document.querySelectorAll('.tab');
 const contents = document.querySelectorAll('.tab-content');
+
 tabs.forEach(tab => {
-  tab.addEventListener('click', () => {
-    tabs.forEach(t => t.classList.remove('active'));
-    contents.forEach(c => c.classList.remove('active'));
-    tab.classList.add('active');
-    const target = document.getElementById(tab.dataset.tab);
-    if (target) target.classList.add('active');
-  });
+    tab.addEventListener('click', () => {
+        // Tüm tabları temizle
+        tabs.forEach(t => t.classList.remove('active'));
+        contents.forEach(c => c.classList.remove('active'));
+
+        // Tıklanan tabı aktif yap
+        tab.classList.add('active');
+
+        // Karşılık gelen içeriği göster
+        const targetId = tab.getAttribute('data-tab');
+        const targetContent = document.getElementById(targetId);
+
+        if (targetContent) {
+            targetContent.classList.add('active');
+        }
+    });
 });
 
 // =======================
