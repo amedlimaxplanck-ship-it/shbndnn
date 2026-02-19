@@ -1,3 +1,34 @@
+import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-storage.js";
+import { doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+// Firestore ve Storage referanslarını tanımla
+const storage = getStorage();
+const db = getFirestore(app);
+
+async function saveAd() {
+  const title = document.getElementById("title").value;
+  const price = document.getElementById("price").value;
+  const description = document.getElementById("description").value;
+  const imageFile = document.getElementById("image").files[0];
+
+  let imageUrl = "";
+
+  if (imageFile) {
+    const imageRef = ref(storage, `ilanlar/${imageFile.name}`);
+    await uploadBytes(imageRef, imageFile);
+    imageUrl = await getDownloadURL(imageRef);
+  }
+
+  await setDoc(doc(db, "ilan", "ilan1"), {
+    title,
+    price,
+    description,
+    imageUrl
+  });
+
+  alert("İlan kaydedildi ✅");
+}
+
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 import { getFirestore, doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
