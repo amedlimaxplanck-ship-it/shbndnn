@@ -698,3 +698,55 @@ body {
     font-size: 13px;
     font-weight: 600;
 }
+
+/* =======================
+   SATICI KARTI - TEMİZ SİYAH YUVARLAK
+======================= */
+
+.seller-card {
+    display: flex;
+    align-items: center;
+    padding: 16px 16px;
+    background: #fff;
+    margin-top: 0;           /* tab ile arası temiz olsun */
+    border-bottom: 1px solid #eee;
+}
+
+.seller-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: #111111;     /* direkt siyah yuvarlak */
+    flex-shrink: 0;
+    margin-right: 14px;
+}
+
+.seller-left {
+    flex: 1;
+}
+
+.seller-name {
+    font-weight: 600;
+    font-size: 16px;
+    margin-bottom: 2px;
+}
+
+.seller-info {
+    font-size: 13px;
+    color: #666;
+}
+
+.seller-btn {
+    border: 1px solid #0060a8;
+    color: #0060a8;
+    background: #fff;
+    padding: 8px 14px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+/* Param Güvende ile Satıcı Kartı arası 12px boşluk */
+.description {
+    margin-bottom: 12px;
+}
