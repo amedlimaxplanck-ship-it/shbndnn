@@ -836,5 +836,54 @@ body {
     font-size: 14px;
 }
 
+/* TÜM BLOKLARI AYNI BEYAZ YAP */
+.price-block, 
+.tab-content, 
+.seller-card, 
+.category-path, 
+.location-centered {
+    background-color: #ffffff !important; /* Tertemiz beyaz */
+    border: none;
+    margin-bottom: 0; /* Aradaki boşlukları aşağıda body ile yöneteceğiz */
+}
+
+/* SAYFA ARKALARINI HAFİF GRİ YAP (Bloklar öne çıksın) */
+body {
+    background-color: #f2f2f2;
+}
+
+/* İLAN DETAY ÇİZGİLERİ (Sahibinden Tarzı) */
+.details {
+    margin-top: 15px;
+}
+
+.detail-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 0;
+    border-bottom: 1px solid #f0f0f0; /* İşte o ince çizgi */
+    font-size: 14px;
+}
+
+.detail-row:last-child {
+    border-bottom: none; /* En alttaki çizgiyi kaldır */
+}
+
+.detail-row span:first-child {
+    color: #888; /* Sol taraf gri */
+}
+
+.detail-row span:last-child {
+    color: #333; /* Sağ taraf koyu */
+    font-weight: 500;
+}
+
+/* SATICI KARTI DÜZELTME */
+.seller-card {
+    padding: 20px 16px;
+    border-top: 1px solid #f0f0f0;
+    border-bottom: 1px solid #f0f0f0;
+    margin: 10px 0; /* Satıcı kartını biraz ayır ki belirgin olsun */
+}
 
 
