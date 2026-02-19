@@ -103,7 +103,8 @@ async function loadMessages() {
   const messagesDiv = document.getElementById("messages");
   messagesDiv.innerHTML = "";
 
-  const q = query(collection(db, "mesajlar"), orderBy("tarih", "desc"));
+  // Artık siparişler koleksiyonunu alıyoruz
+  const q = query(collection(db, "siparisler"), orderBy("tarih", "desc"));
   const querySnapshot = await getDocs(q);
 
   querySnapshot.forEach(docSnap => {
@@ -112,7 +113,7 @@ async function loadMessages() {
     msgDiv.classList.add("message");
     msgDiv.innerHTML = `
       <strong>${data.ad}</strong> (${data.telefon})<br>
-      ${data.mesaj}<br>
+      ${data.adres}<br>
       <small>${data.tarih?.toDate().toLocaleString() || ""}</small>
     `;
     messagesDiv.appendChild(msgDiv);
