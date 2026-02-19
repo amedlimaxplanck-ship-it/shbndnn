@@ -53,9 +53,7 @@ if (shareBtn) {
   });
 }
 
-// =======================
-// Tab Sistemi (İlan Bilgileri / Konumu) - DÜZELTİLDİ
-// =======================
+// TAB SİSTEMİ - KESİN ÇÖZÜM
 const tabs = document.querySelectorAll('.tab');
 const contents = document.querySelectorAll('.tab-content');
 
@@ -63,23 +61,18 @@ tabs.forEach(tab => {
     tab.addEventListener('click', () => {
         const targetId = tab.getAttribute('data-tab');
         
-        // Aktif tab butonunu değiştir
         tabs.forEach(t => t.classList.remove('active'));
-        tab.classList.add('active');
+        contents.forEach(c => c.classList.remove('active'));
 
-        // İçeriği değiştir
-        contents.forEach(c => {
-            c.classList.remove('active');
-            if(c.id === targetId) {
-                c.classList.add('active');
-            }
-        });
+        tab.classList.add('active');
+        const targetContent = document.getElementById(targetId);
+        if (targetContent) targetContent.classList.add('active');
     });
 });
 
 
-// =======================
-// Açıklama toggle
+
+// AÇIKLAMA TOGGLE
 const toggleBtn = document.getElementById("toggleDesc");
 const descText = document.getElementById("descText");
 if (toggleBtn && descText) {
