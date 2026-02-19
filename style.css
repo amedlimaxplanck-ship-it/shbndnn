@@ -187,3 +187,13 @@ body {
     width: 24px;
     height: 24px;
 }
+
+/* Favlama - içi dolu beyaz yıldız */
+.favorite-icon {
+    color: #ffffff;        /* başlangıçta beyaz dolu */
+    cursor: pointer;
+    font-size: 24px;
+}
+.favorite-icon:hover {
+    color: #ffc107;
+}
