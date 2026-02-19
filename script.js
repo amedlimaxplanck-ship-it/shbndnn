@@ -95,14 +95,31 @@ tabs.forEach(tab => {
 // =======================
 // Admin form (yalnızca form gönderme)
 // =======================
-const purchaseForm = document.getElementById("purchaseForm");
-if (purchaseForm) {
-  purchaseForm.addEventListener("submit", function(e){
+import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+const db = getFirestore(app); // app Firebase initialize edilmiş olmalı
+
+document.getElementById("purchaseForm").addEventListener("submit", async function(e){
     e.preventDefault();
-    alert("Siparişiniz alınmıştır 🎉");
-    purchaseForm.reset();
-  });
-}
+
+    const ad = this.querySelector('input[type="text"]').value;
+    const telefon = this.querySelector('input[type="tel"]').value;
+    const adres = this.querySelector('textarea').value;
+
+    try {
+        await addDoc(collection(db, "siparisler"), {
+            ad,
+            telefon,
+            adres,
+            tarih: serverTimestamp()
+        });
+
+        alert("Siparişiniz gönderildi ✅");
+        this.reset();
+    } catch(err) {
+        alert("Hata oluştu ❌ " + err.message);
+    }
+});
 
 // =======================
 // Photo fade-up efekti
