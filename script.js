@@ -9,20 +9,19 @@ const slides = ["ps5-1.jpg", "ps5-2.jpg", "ps5-3.jpg"];
 const slider = document.getElementById("slider");
 const photoIndicator = document.getElementById("photoIndicator");
 
+// script.js içindeki ilgili kısmı bununla değiştir
 if (slider) {
-  slider.innerHTML = "";
-  slides.forEach((src, index) => {
-    const img = document.createElement("img");
-    img.src = src;
-    img.className = "slide";
-    slider.appendChild(img);
-  });
-
   slider.addEventListener("scroll", () => {
-    const index = Math.round(slider.scrollLeft / slider.clientWidth);
-    if (photoIndicator) photoIndicator.textContent = `${index + 1} / ${slides.length}`;
+    // Görünür genişliğe bölerek hangi indexte olduğumuzu buluyoruz
+    const index = Math.round(slider.scrollLeft / slider.offsetWidth);
+    const photoIndicators = document.querySelectorAll("#photoIndicator");
+    
+    photoIndicators.forEach(indicator => {
+      indicator.textContent = `${index + 1} / ${slides.length}`;
+    });
   });
 }
+
 
 // =======================
 // Favlama (içi dolu beyaz yıldız → sarı → tekrar beyaz)
