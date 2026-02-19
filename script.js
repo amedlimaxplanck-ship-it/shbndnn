@@ -5,9 +5,9 @@
 // =======================
 const slider = document.getElementById("slider");
 const slides = [
-  "resimler/ps5-1.jpg",
-  "resimler/ps5-2.jpg",
-  "resimler/ps5-3.jpg"
+  "ps5-1.jpg",
+  "ps5-2.jpg",
+  "ps5-3.jpg"
 ];
 
 // Sliderı doldur
