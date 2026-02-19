@@ -5,22 +5,28 @@
 const slides = ["ps5-1.jpg", "ps5-2.jpg", "ps5-3.jpg"];
 
 // =======================
-// Galeri (yatay kaydırılır thumbnail + 1/3 gösterge)
-const slider = document.getElementById("slider");
-const photoIndicator = document.getElementById("photoIndicator");
+// 1. Resim Listesi (Klasördeki isimlerle birebir aynı olmalı)
+const slides = ["ps5-1.jpg", "ps5-2.jpg", "ps5-3.jpg"];
 
-// script.js içindeki ilgili kısmı bununla değiştir
+const slider = document.getElementById("slider");
+const indicators = document.querySelectorAll(".photo-indicator"); // Class olarak seçtik
+
 if (slider) {
-  slider.addEventListener("scroll", () => {
-    // Görünür genişliğe bölerek hangi indexte olduğumuzu buluyoruz
-    const index = Math.round(slider.scrollLeft / slider.offsetWidth);
-    const photoIndicators = document.querySelectorAll("#photoIndicator");
-    
-    photoIndicators.forEach(indicator => {
-      indicator.textContent = `${index + 1} / ${slides.length}`;
+    // Önce içini dolduralım
+    slider.innerHTML = slides.map(src => `<img src="${src}" class="slide">`).join('');
+
+    // Kaydırma fonksiyonu
+    slider.addEventListener("scroll", () => {
+        // Genişliği tam sayıya yuvarlayarak hangi fotoda olduğumuzu buluyoruz
+        const index = Math.round(slider.scrollLeft / slider.clientWidth);
+        
+        // Tüm indikatörleri (hem alttaki hem varsa üstteki) güncelle
+        indicators.forEach(el => {
+            el.textContent = `${index + 1} / ${slides.length}`;
+        });
     });
-  });
 }
+
 
 
 // =======================
