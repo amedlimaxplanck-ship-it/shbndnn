@@ -59,6 +59,18 @@ document.getElementById("purchaseForm").addEventListener("submit", function(e){
 </script>
 
 <script src="script.js"></script>
+<div id="customModal" class="modal-overlay">
+    <div class="modal-card">
+        <div class="success-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#00bfa5" stroke-width="3">
+                <path d="M20 6L9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </div>
+        <h3>Tebrikler!</h3>
+        <p>Siparişiniz başarıyla alınmıştır.</p>
+        <button onclick="closeModal()" class="modal-btn">Tamam</button>
+    </div>
+</div>
 
 </body>
 </html>
