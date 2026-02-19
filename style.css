@@ -766,3 +766,47 @@ body {
 .seller-card {
     margin-bottom: 20px !important;
 }
+
+.modal-overlay {
+    display: none; /* Başlangıçta gizli */
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.6);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-card {
+    background: white;
+    width: 80%;
+    max-width: 320px;
+    padding: 30px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+.success-icon {
+    width: 60px;
+    height: 60px;
+    background: #e6fffb;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 15px;
+}
+
+.modal-card h3 { color: #333; margin-bottom: 10px; }
+.modal-card p { color: #666; font-size: 14px; margin-bottom: 20px; }
+
+.modal-btn {
+    background: #00bfa5;
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 8px;
+    font-weight: 600;
+    width: 100%;
+}
