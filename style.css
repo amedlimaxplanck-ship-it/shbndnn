@@ -923,3 +923,29 @@ body {
     padding: 15px 0 30px;
     background: #fff;
 }
+
+/* =======================
+   FİYAT + BAŞLIK - price-block içinde estetik hizalama
+======================= */
+
+.price-block {
+    background: #fff;
+    padding: 16px 16px 8px 16px;   /* aşağı boşluk kapatıldı */
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.price {
+    font-size: 32px;
+    font-weight: 700;
+    color: #e60000;
+    margin-bottom: 8px;   /* fiyat ile başlık arası sadece 8px */
+    line-height: 1;
+}
+
+.ad-title {
+    font-size: 21px;
+    font-weight: 700;
+    color: #111;
+    margin: 0;
+    line-height: 1.25;
+}
