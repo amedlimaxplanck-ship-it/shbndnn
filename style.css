@@ -886,4 +886,25 @@ body {
     margin: 10px 0; /* Satıcı kartını biraz ayır ki belirgin olsun */
 }
 
+/* Konum linki */
+.location-centered a {
+    color: #0060a8;
+    text-decoration: underline;
+    font-weight: 500;
+}
 
+/* Harita kutusu */
+.location-box {
+    margin-top: 12px;
+    padding: 0 16px;
+}
+
+.location-box iframe {
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+/* Konumu sekmesi açıldığında daha iyi görünsün */
+#location {
+    padding-bottom: 20px;
+}
