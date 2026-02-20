@@ -954,3 +954,8 @@ body {
     padding-left: 16px;
     padding-right: 16px;
 }
+
+.detail-row .ilan-no {
+    color: #cc4c4c !important;
+    font-weight: 600;
+}
