@@ -562,9 +562,8 @@ body {
 
 
 .ilan-no {
-  color: #e60000;   /* sabit kırmızı */
-  font-weight: 700; /* biraz belirgin */
-  
+  color: #d9534f;   /* daha soft kırmızı */
+  font-weight: 600;
 }
 
 .category-path,
