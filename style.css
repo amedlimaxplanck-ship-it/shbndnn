@@ -930,7 +930,7 @@ body {
 
 .price-block {
     background: #fff;
-    padding: 16px 16px 8px 16px;   /* aşağı boşluk kapatıldı */
+    padding: 16px 0 8px 0;   /* aşağı boşluk kapatıldı */
     border-bottom: 1px solid #f0f0f0;
 }
 
