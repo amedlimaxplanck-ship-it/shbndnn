@@ -908,3 +908,18 @@ body {
 #location {
     padding-bottom: 20px;
 }
+
+/* TAB İÇERİKLERİ - GÖRÜNÜRLÜK DÜZELTMESİ */
+.tab-content {
+    display: none !important;
+}
+
+.tab-content.active {
+    display: block !important;
+}
+
+/* Konum sekmesi için ekstra boşluk ve görünürlük */
+#location {
+    padding: 15px 0 30px;
+    background: #fff;
+}
