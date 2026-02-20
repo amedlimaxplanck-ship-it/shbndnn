@@ -937,8 +937,8 @@ body {
 .price {
     font-size: 32px;
     font-weight: 700;
-    color: #e60000;
-    margin-bottom: 8px;   /* fiyat ile başlık arası sadece 8px */
+    color: #0060a8;   /* Sahibinden mavisi */
+    margin-bottom: 8px;
     line-height: 1;
 }
 
