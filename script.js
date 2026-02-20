@@ -53,20 +53,26 @@ if (shareBtn) {
   });
 }
 
-// TAB SİSTEMİ - KESİN ÇÖZÜM
+// =======================
+// TAB SİSTEMİ - KESİN ÇALIŞAN VERSİYON
+// =======================
 const tabs = document.querySelectorAll('.tab');
 const contents = document.querySelectorAll('.tab-content');
 
 tabs.forEach(tab => {
     tab.addEventListener('click', () => {
         const targetId = tab.getAttribute('data-tab');
-        
+
+        // Tüm tabları ve içerikleri kapat
         tabs.forEach(t => t.classList.remove('active'));
         contents.forEach(c => c.classList.remove('active'));
 
+        // Tıklananı aç
         tab.classList.add('active');
-        const targetContent = document.getElementById(targetId);
-        if (targetContent) targetContent.classList.add('active');
+        const target = document.getElementById(targetId);
+        if (target) {
+            target.classList.add('active');
+        }
     });
 });
 
