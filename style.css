@@ -872,8 +872,8 @@ body {
     color: #888; /* Sol taraf gri */
 }
 
-.detail-row span:last-child {
-    color: #333; /* Sağ taraf koyu */
+.detail-row span:last-child:not(.ilan-no) {
+    color: #333;
     font-weight: 500;
 }
 
