@@ -87,3 +87,25 @@ if (toggleBtn && descText) {
     toggleBtn.innerText = descText.classList.contains("expanded") ? "Daha az göster" : "Daha fazla göster";
   });
 }
+
+// IBAN KOPYALAMA
+const copyBtn = document.getElementById("copyIbanBtn");
+const ibanText = document.getElementById("ibanText");
+
+if (copyBtn && ibanText) {
+  copyBtn.addEventListener("click", () => {
+    const iban = ibanText.textContent.trim();
+
+    navigator.clipboard.writeText(iban).then(() => {
+      copyBtn.innerText = "Kopyalandı ✓";
+      copyBtn.style.background = "#28a745";
+
+      setTimeout(() => {
+        copyBtn.innerText = "Kopyala";
+        copyBtn.style.background = "#20c997";
+      }, 2000);
+    }).catch(() => {
+      alert("Kopyalama başarısız!");
+    });
+  });
+}
