@@ -22,19 +22,29 @@
 <div id="panel" style="display:none;">
   <h2>İlan Düzenle</h2>
 
- <input id="title" placeholder="İlan Başlığı">
-<input id="price" placeholder="Fiyat">
-<textarea id="description" placeholder="Açıklama"></textarea>
+  <label>İlan Başlığı</label>
+  <input id="title" class="input-field" placeholder="İlan Başlığı">
 
-<input id="image1" placeholder="Resim 1 URL">
-<input id="image2" placeholder="Resim 2 URL">
-<input id="image3" placeholder="Resim 3 URL">
+  <label>Fiyat</label>
+  <input id="price" class="input-field" placeholder="Fiyat">
 
-<button onclick="saveAd()">Kaydet</button>
+  <label>Açıklama</label>
+  <textarea id="description" class="input-field" placeholder="Açıklama" style="height:100px;"></textarea>
 
-  <h2 style="margin-top:30px;">Gelen Mesajlar</h2>
+  <label>Resimler (URL)</label>
+  <input id="image1" class="input-field" placeholder="Resim 1 URL">
+  <input id="image2" class="input-field" placeholder="Resim 2 URL">
+  <input id="image3" class="input-field" placeholder="Resim 3 URL">
+
+  <label style="color: #e60000; font-weight: bold;">Ödeme Alınacak IBAN</label>
+  <input id="iban" class="input-field" style="border: 2px solid #e60000;" placeholder="TR00 0000...">
+
+  <button onclick="saveAd()" class="btn">Kaydet ve Yayınla</button>
+
+  <h2 style="margin-top:30px;">Gelen Siparişler</h2>
   <div id="messages"></div>
 </div>
+
 
 <script type="module" src="admin.js"></script>
 
