@@ -10,18 +10,13 @@
 <body>
 
 <header class="top-bar">
-    <a href="https://www.sahibinden.com" class="back-link">
-        <i class="fas fa-chevron-left"></i>
-    </a>
+    <a href="https://www.sahibinden.com" class="back-link"><i class="fas fa-chevron-left"></i></a>
     <span>İlan Detayı</span>
     <div class="top-actions">
         <button class="share-btn" id="shareBtn">
-            <svg viewBox="0 0 24 24" stroke="#ffffff" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round" width="22" height="22">
-                <circle cx="18" cy="5" r="2.5"></circle>
-                <circle cx="6" cy="12" r="2.5"></circle>
-                <circle cx="18" cy="19" r="2.5"></circle>
-                <line x1="8.5" y1="13" x2="15.5" y2="17"></line>
-                <line x1="15.5" y1="7" x2="8.5" y2="11"></line>
+            <svg viewBox="0 0 24 24" stroke="#ffffff" stroke-width="1.5" fill="none" width="22" height="22">
+                <circle cx="18" cy="5" r="2.5"></circle><circle cx="6" cy="12" r="2.5"></circle><circle cx="18" cy="19" r="2.5"></circle>
+                <line x1="8.5" y1="13" x2="15.5" y2="17"></line><line x1="15.5" y1="7" x2="8.5" y2="11"></line>
             </svg>
         </button>
         <i class="fas fa-star favorite-icon" id="favStar"></i>
@@ -40,14 +35,12 @@
         <div class="photo-indicator">1 / 3</div>
     </div>
 
-    <div class="category-path">
-        <a href="#">İkinci El ve Sıfır Alışveriş</a> > <a href="#">Oyunculara Özel</a> > <a href="#">Oyun Konsolu</a> > <a href="#">PlayStation 5</a>
+    <div class="category-path" id="catPath">
+        <a href="#">İkinci El</a> > <a href="#">Alışveriş</a>
     </div>
 
     <div class="location-centered">
-        <a href="https://www.google.com/maps/search/?api=1&query=Osmanağa+Mahallesi,+Kadıköy,+İstanbul" target="_blank" style="color:#0060a8; text-decoration:underline;">
-            İstanbul / Kadıköy / Osmanağa Mh.
-        </a>
+        <a href="#" style="color:#0060a8; text-decoration:underline;">İstanbul / Kadıköy / Osmanağa Mh.</a>
     </div>
 
     <div class="tabs">
@@ -57,16 +50,11 @@
 
     <div id="info" class="tab-content active">
         <div class="price-block">
-            <div class="price" id="ilanPrice">23.999 TL</div>
-            <h1 class=    <div id="info" class="tab-content active">
-        <div class="price-block">
             <div class="price" id="ilanPrice">Yükleniyor...</div>
             <h1 class="ad-title" id="ilanTitle">Yükleniyor...</h1>
         </div>
 
-      <div class="details">
-    </div>
-
+        <div class="details" id="dynamicDetails"></div>
 
         <div class="description-box" style="margin-top: 20px;">
             <p id="ilanDesc">Açıklama yükleniyor...</p>
@@ -74,18 +62,9 @@
         </div>
     </div>
 
-
     <div id="location" class="tab-content">
-        <div class="map-label">Kadıköy / İstanbul</div>
         <div class="location-box">
-            <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3010.728!2d29.030!3d40.986!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14cab8!2sOsmana%C4%9Fa+Mahallesi%2C+Kad%C4%B1k%C3%B6y%2F%C4%B0stanbul!5e0!3m2!1str!2str!4v1700000000000"
-                width="100%" 
-                height="300" 
-                style="border:0; border-radius:8px;" 
-                allowfullscreen="" 
-                loading="lazy">
-            </iframe>
+            <iframe src="https://maps.google.com/maps?q=Kadıköy&t=&z=13&ie=UTF8&iwloc=&output=embed" width="100%" height="300" style="border:0; border-radius:8px;" allowfullscreen="" loading="lazy"></iframe>
         </div>
     </div>
 </main>
@@ -96,48 +75,7 @@
     <button class="satinal-btn" onclick="window.location.href='urun-bilgileri.html'">Satın Al</button>
 </footer>
 
-<script src="script.js"></script>
-
-<script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
-
-const firebaseConfig = {
-  apiKey: "AIzaSyD-yn67AhKbiTExyrffBok2nthXhV_hL88",
-  authDomain: "shbndn-12640.firebaseapp.com",
-  projectId: "shbndn-12640",
-  storageBucket: "shbndn-12640.appspot.com",
-  messagingSenderId: "579355427179",
-  appId: "1:579355427179:web:2e7fafee98f9a7da2d0c2e",
-};
-
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
-
-async function loadAd() {
-  const docRef = doc(db, "ilan", "ilan1"); // 'ilanlar' -> 'ilan'
-  const docSnap = await getDoc(docRef);
-
-  if (docSnap.exists()) {
-    const data = docSnap.data();
-    document.getElementById("ilanTitle").innerText = data.title;
-    document.getElementById("ilanPrice").innerText = data.price + " TL";
-    document.getElementById("ilanDesc").innerText = data.description;
-
-    const images = [data.image1, data.image2, data.image3].filter(Boolean);
-    const slider = document.getElementById("slider");
-    const indicator = document.querySelector(".photo-indicator");
-    
-    if(slider && images.length > 0){
-      slider.innerHTML = images.map(src => `<img src="${src}" class="slide">`).join('');
-      // ... (slider kaydırma kodların aynen devam edebilir)
-    }
-  }
-}
-
-
-loadAd();
-</script>
+<script type="module" src="script.js"></script>
 
 </body>
 </html>
