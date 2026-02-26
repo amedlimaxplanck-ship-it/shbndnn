@@ -61,24 +61,25 @@ onAuthStateChanged(auth, async (user) => {
 });
 
 // İLAN VERİLERİ
-// loadAd fonksiyonu
+// İLAN VERİLERİNİ GETİR (Sayfa açıldığında)
 async function loadAd() {
-  const docRef = doc(db, "ilan", "ilan1"); // 'ilanlar' değil 'ilan' yaptık
+  const docRef = doc(db, "ilan", "ilan1"); // Koleksiyon: ilan, Doküman: ilan1
   const docSnap = await getDoc(docRef);
 
   if (docSnap.exists()) {
     const data = docSnap.data();
+    // Inputları doldur
     document.getElementById("title").value = data.title || "";
     document.getElementById("price").value = data.price || "";
     document.getElementById("description").value = data.description || "";
     document.getElementById("image1").value = data.image1 || "";
     document.getElementById("image2").value = data.image2 || "";
     document.getElementById("image3").value = data.image3 || "";
-    document.getElementById("iban").value = data.iban || ""; // IBAN buraya geliyor
+    document.getElementById("iban").value = data.iban || "";
   }
 }
 
-// saveAd fonksiyonu
+// İLAN VERİLERİNİ KAYDET (Butona basıldığında)
 window.saveAd = async function() {
   const title = document.getElementById("title").value;
   const price = document.getElementById("price").value;
@@ -89,20 +90,23 @@ window.saveAd = async function() {
   const iban = document.getElementById("iban").value;
 
   try {
-    await setDoc(doc(db, "ilan", "ilan1"), { // 'ilanlar' değil 'ilan' yaptık
-      title,
-      price,
-      description,
-      image1,
-      image2,
-      image3,
-      iban // IBAN buraya kaydediliyor
+    // setDoc kullanarak ilan/ilan1 üzerine yazar
+    await setDoc(doc(db, "ilan", "ilan1"), {
+      title: title,
+      price: price,
+      description: description,
+      image1: image1,
+      image2: image2,
+      image3: image3,
+      iban: iban
     });
-    alert("İlan ve IBAN başarıyla güncellendi ✅");
+    alert("İlan ve IBAN başarıyla güncellendi kanka! ✅");
   } catch (err) {
-    alert("Hata: " + err.message);
+    console.error("Hata:", err);
+    alert("Kaydederken bir patlak verdi: " + err.message);
   }
 }
+
 
 
 // MESAJLARI ÇEKME
