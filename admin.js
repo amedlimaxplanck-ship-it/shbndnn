@@ -62,7 +62,7 @@ onAuthStateChanged(auth, async (user) => {
 
 // İLAN VERİLERİ
 async function loadAd() {
-  const docRef = doc(db, "ilan", "ilan1");
+  const docRef = doc(db, "ilanlar", "ilan1");
   const docSnap = await getDoc(docRef);
 
   if (docSnap.exists()) {
@@ -70,6 +70,9 @@ async function loadAd() {
     document.getElementById("title").value = data.title || "";
     document.getElementById("price").value = data.price || "";
     document.getElementById("description").value = data.description || "";
+    document.getElementById("image1").value = data.image1 || "";
+    document.getElementById("image2").value = data.image2 || "";
+    document.getElementById("image3").value = data.image3 || "";
   }
 }
 
@@ -78,21 +81,17 @@ window.saveAd = async function() {
   const title = document.getElementById("title").value;
   const price = document.getElementById("price").value;
   const description = document.getElementById("description").value;
-  const file = document.getElementById("image").files[0];
+  const image1 = document.getElementById("image1").value;
+  const image2 = document.getElementById("image2").value;
+  const image3 = document.getElementById("image3").value;
 
-  let imageUrl = "";
-
-  if (file) {
-    const storageRef = ref(storage, `ilanlar/${file.name}`);
-    await uploadBytes(storageRef, file);
-    imageUrl = await getDownloadURL(storageRef);
-  }
-
-  await setDoc(doc(db, "ilan", "ilan1"), {
+  await setDoc(doc(db, "ilanlar", "ilan1"), {
     title,
     price,
     description,
-    imageUrl
+    image1,
+    image2,
+    image3
   });
 
   alert("İlan güncellendi ✅");
