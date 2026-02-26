@@ -109,30 +109,26 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 async function loadAd() {
-  const docRef = doc(db, "ilan", "ilan1");
+  const docRef = doc(db, "ilan", "ilan1"); // 'ilanlar' -> 'ilan'
   const docSnap = await getDoc(docRef);
 
   if (docSnap.exists()) {
     const data = docSnap.data();
-
     document.getElementById("ilanTitle").innerText = data.title;
     document.getElementById("ilanPrice").innerText = data.price + " TL";
     document.getElementById("ilanDesc").innerText = data.description;
 
-    // Slider resimleri
     const images = [data.image1, data.image2, data.image3].filter(Boolean);
     const slider = document.getElementById("slider");
     const indicator = document.querySelector(".photo-indicator");
+    
     if(slider && images.length > 0){
       slider.innerHTML = images.map(src => `<img src="${src}" class="slide">`).join('');
-      slider.addEventListener("scroll", () => {
-        const index = Math.round(slider.scrollLeft / slider.offsetWidth);
-        if (indicator) indicator.textContent = `${index + 1} / ${images.length}`;
-      });
-      indicator.textContent = `1 / ${images.length}`;
+      // ... (slider kaydırma kodların aynen devam edebilir)
     }
   }
 }
+
 
 loadAd();
 </script>
