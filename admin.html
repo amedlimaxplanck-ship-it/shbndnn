@@ -2,8 +2,13 @@
 <html lang="tr">
 <head>
   <meta charset="UTF-8">
-  <title>Admin Panel</title>
+  <title>Admin Panel | Synthetix</title>
   <link rel="stylesheet" href="admin.css">
+  <style>
+    /* Eğer admin.css'te yoksa diye buraya ekliyorum */
+    .input-field { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box; }
+    label { font-weight: bold; display: block; margin-top: 15px; color: #333; }
+  </style>
 </head>
 <body>
 
@@ -19,32 +24,35 @@
   <button onclick="login()" class="btn">Giriş</button>
 </div>
 
-<div id="panel" style="display:none;">
-  <h2>İlan Düzenle</h2>
+<div id="panel" style="display:none; max-width: 600px; margin: 20px auto; background: white; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1);">
+  <h2 style="border-bottom: 2px solid #e60000; padding-bottom: 10px;">İlan Düzenle</h2>
 
   <label>İlan Başlığı</label>
-  <input id="title" class="input-field" placeholder="İlan Başlığı">
+  <input id="title" class="input-field">
 
-  <label>Fiyat</label>
-  <input id="price" class="input-field" placeholder="Fiyat">
+  <label>Fiyat (TL)</label>
+  <input id="price" class="input-field">
 
-  <label>Açıklama</label>
-  <textarea id="description" class="input-field" placeholder="Açıklama" style="height:100px;"></textarea>
+  <label>İlan Açıklaması</label>
+  <textarea id="description" class="input-field" style="height: 100px;"></textarea>
 
-  <label>Resimler (URL)</label>
-  <input id="image1" class="input-field" placeholder="Resim 1 URL">
-  <input id="image2" class="input-field" placeholder="Resim 2 URL">
-  <input id="image3" class="input-field" placeholder="Resim 3 URL">
+  <label>Resim 1 (Kapak)</label>
+  <input id="image1" class="input-field">
 
-  <label style="color: #e60000; font-weight: bold;">Ödeme Alınacak IBAN</label>
-  <input id="iban" class="input-field" style="border: 2px solid #e60000;" placeholder="TR00 0000...">
+  <label>Resim 2</label>
+  <input id="image2" class="input-field">
 
-  <button onclick="saveAd()" class="btn">Kaydet ve Yayınla</button>
+  <label>Resim 3</label>
+  <input id="image3" class="input-field">
 
-  <h2 style="margin-top:30px;">Gelen Siparişler</h2>
+  <label style="color: #20c997;">Ödeme Alınacak IBAN</label>
+  <input id="iban" class="input-field" style="border: 2px solid #20c997;" placeholder="TR...">
+
+  <button onclick="saveAd()" class="btn" style="margin-top: 20px; background: #20c997;">Tüm Bilgileri Kaydet</button>
+
+  <h2 style="margin-top:40px; border-bottom: 2px solid #333; padding-bottom: 10px;">Gelen Siparişler</h2>
   <div id="messages"></div>
 </div>
-
 
 <script type="module" src="admin.js"></script>
 
