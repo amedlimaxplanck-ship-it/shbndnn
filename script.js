@@ -70,19 +70,19 @@ const db = getFirestore(app);
 
 // IBAN yükleme
 async function loadIban() {
-  const docRef = doc(db, "ilan", "ilan1"); // 'ilanlar' -> 'ilan'
+  const docRef = doc(db, "ilan", "ilan1"); // Burası da ilan/ilan1 oldu
   const docSnap = await getDoc(docRef);
 
   if (docSnap.exists()) {
     const data = docSnap.data();
     const ibanText = document.getElementById("ibanText");
     if (ibanText) {
-        ibanText.innerText = data.iban || "TR00 0000 0000 0000 0000 0000 00"; 
+      ibanText.innerText = data.iban || "TR00 0000 0000 0000 0000 0000 00";
     }
   }
 }
-
 loadIban();
+
 
 // IBAN kopyalama
 const copyBtn = document.getElementById("copyIbanBtn");
