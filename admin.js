@@ -73,7 +73,22 @@ async function loadAd() {
     document.getElementById("image1").value = data.image1 || "";
     document.getElementById("image2").value = data.image2 || "";
     document.getElementById("image3").value = data.image3 || "";
-  }
+    // loadAd() içine ekle
+document.getElementById("iban").value = data.iban || "";
+
+// saveAd() içine ekle
+const iban = document.getElementById("iban").value;
+
+await setDoc(doc(db, "ilan", "ilan1"), {
+  title,
+  price,
+  description,
+  image1,
+  image2,
+  image3,
+  iban  // buraya ekledik
+});
+   }
 }
 
 // İLAN KAYDETME
