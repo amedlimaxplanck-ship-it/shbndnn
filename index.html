@@ -129,6 +129,45 @@
     <img id="zoomedPhoto" class="zoomed-img">
 </div>
 
-<script src="script.js"></script>
+<script src="script.js">
+
+<script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyD-yn67AhKbiTExyrffBok2nthXhV_hL88",
+  authDomain: "shbndn-12640.firebaseapp.com",
+  projectId: "shbndn-12640",
+  storageBucket: "shbndn-12640.appspot.com",
+  messagingSenderId: "579355427179",
+  appId: "1:579355427179:web:2e7fafee98f9a7da2d0c2e",
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+async function loadAd() {
+  const docRef = doc(db, "ilanlar", "ilan1");
+  const docSnap = await getDoc(docRef);
+
+  if (docSnap.exists()) {
+    const data = docSnap.data();
+
+    document.getElementById("ilanTitle").innerText = data.title;
+    document.getElementById("ilanPrice").innerText = data.price + " TL";
+    document.getElementById("ilanDesc").innerText = data.description;
+
+    document.getElementById("img1").src = data.image1;
+    document.getElementById("img2").src = data.image2;
+    document.getElementById("img3").src = data.image3;
+  }
+}
+
+loadAd();
+
+</script>
+</script>
 </body>
 </html>
