@@ -70,13 +70,15 @@ const db = getFirestore(app);
 
 // IBAN yükleme
 async function loadIban() {
-  const docRef = doc(db, "ilanlar", "ilan1"); // ilan collection değil, admin paneldeki ilanlar collection
+  const docRef = doc(db, "ilan", "ilan1"); // 'ilanlar' -> 'ilan'
   const docSnap = await getDoc(docRef);
 
   if (docSnap.exists()) {
     const data = docSnap.data();
     const ibanText = document.getElementById("ibanText");
-    if (ibanText) ibanText.innerText = data.iban || "TR12 3456 7890 1234 5678 9012 34";
+    if (ibanText) {
+        ibanText.innerText = data.iban || "TR00 0000 0000 0000 0000 0000 00"; 
+    }
   }
 }
 
