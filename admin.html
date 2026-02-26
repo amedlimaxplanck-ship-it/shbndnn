@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Panel | Güvenli Erişim</title>
+  <style>
+    body { background: #0f0f11; color: white; font-family: sans-serif; padding: 20px; }
+    .container { max-width: 800px; margin: 0 auto; background: #1a1a1d; padding: 25px; border-radius: 12px; }
+    #loginArea { text-align: center; padding: 50px 0; }
+    input, textarea { width: 100%; padding: 12px; margin: 10px 0; background: #222; border: 1px solid #333; color: white; border-radius: 6px; }
+    .btn { cursor: pointer; border: none; padding: 12px 20px; border-radius: 6px; font-weight: bold; }
+    .btn-primary { background: #00bfa5; color: black; width: 100%; }
+    .btn-add { background: #ffc107; color: black; margin-bottom: 15px; }
+    .feature-row { display: flex; gap: 10px; margin-bottom: 10px; }
+    .feature-row input { margin: 0; }
+    .btn-remove { background: #ff4c4c; color: white; padding: 10px; }
+    #adminContent { display: none; }
+    h2 { border-bottom: 1px solid #333; padding-bottom: 10px; color: #00bfa5; }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <div id="loginArea">
+    <h1>Yönetici Girişi</h1>
+    <input type="email" id="adminEmail" placeholder="Email Adresin">
+    <input type="password" id="adminPass" placeholder="Şifren">
+    <button class="btn btn-primary" onclick="login()">Sisteme Gir</button>
+  </div>
+
+  <div id="adminContent">
+    <h2>Genel Bilgiler</h2>
+    <input type="text" id="title" placeholder="İlan Başlığı">
+    <input type="text" id="price" placeholder="Fiyat (TL)">
+    <textarea id="description" rows="3" placeholder="Açıklama"></textarea>
+    <input type="text" id="iban" placeholder="Ödeme IBAN">
+
+    <h2>Görseller</h2>
+    <input type="text" id="img1" placeholder="Resim 1 URL">
+    <input type="text" id="img2" placeholder="Resim 2 URL">
+    <input type="text" id="img3" placeholder="Resim 3 URL">
+
+    <h2>İlan Özellikleri (Dinamik)</h2>
+    <div id="featureList">
+        </div>
+    <button class="btn btn-add" onclick="addFeatureRow()">+ Yeni Özellik Ekle (Örn: Kumaş, İşlemci vb.)</button>
+
+    <button class="btn btn-primary" id="saveBtn" style="margin-top:20px; font-size:18px;">DEĞİŞİKLİKLERİ YAYINLA</button>
+  </div>
+</div>
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+  import { getFirestore, doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+  import { getAuth, signInWithEmailAndPassword, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyD-yn67AhKbiTExyrffBok2nthXhV_hL88",
+    authDomain: "shbndn-12640.firebaseapp.com",
+    projectId: "shbndn-12640",
+    storageBucket: "shbndn-12640.appspot.com",
+    messagingSenderId: "579355427179",
+    appId: "1:579355427179:web:2e7fafee98f9a7da2d0c2e"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+  const auth = getAuth(app);
+
+  // Giriş Yapma Fonksiyonu
+  window.login = async () => {
+    const email = document.getElementById("adminEmail").value;
+    const pass = document.getElementById("adminPass").value;
+    try {
+      await signInWithEmailAndPassword(auth, email, pass);
+    } catch (e) { alert("Giriş Başarısız: " + e.message); }
+  };
+
+  // Oturum Kontrolü
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      document.getElementById("loginArea").style.display = "none";
+      document.getElementById("adminContent").style.display = "block";
+      loadData();
+    }
+  });
+
+  // Dinamik Satır Ekleme
+  window.addFeatureRow = (key = "", value = "") => {
+    const div = document.createElement("div");
+    div.className = "feature-row";
+    div.innerHTML = `
+      <input type="text" class="f-key" placeholder="Özellik (Marka, Renk...)" value="${key}">
+      <input type="text" class="f-val" placeholder="Değeri (Sony, Siyah...)" value="${value}">
+      <button class="btn btn-remove" onclick="this.parentElement.remove()">X</button>
+    `;
+    document.getElementById("featureList").appendChild(div);
+  };
+
+  async function loadData() {
+    const snap = await getDoc(doc(db, "ilan", "ilan1"));
+    if (snap.exists()) {
+      const d = snap.data();
+      document.getElementById("title").value = d.title || "";
+      document.getElementById("price").value = d.price || "";
+      document.getElementById("description").value = d.description || "";
+      document.getElementById("iban").value = d.iban || "";
+      document.getElementById("img1").value = d.image1 || "";
+      document.getElementById("img2").value = d.image2 || "";
+      document.getElementById("img3").value = d.image3 || "";
+      
+      if(d.features) {
+        d.features.forEach(f => addFeatureRow(f.key, f.val));
+      }
+    }
+  }
+
+  document.getElementById("saveBtn").onclick = async () => {
+    const features = [];
+    document.querySelectorAll(".feature-row").forEach(row => {
+      features.push({
+        key: row.querySelector(".f-key").value,
+        val: row.querySelector(".f-val").value
+      });
+    });
+
+    try {
+      await setDoc(doc(db, "ilan", "ilan1"), {
+        title: document.getElementById("title").value,
+        price: document.getElementById("price").value,
+        description: document.getElementById("description").value,
+        iban: document.getElementById("iban").value,
+        image1: document.getElementById("img1").value,
+        image2: document.getElementById("img2").value,
+        image3: document.getElementById("img3").value,
+        features: features
+      });
+      alert("Her şey kaydedildi agam! ✅");
+    } catch (e) { alert("Hata: " + e.message); }
+  };
+</script>
+</body>
+</html>
