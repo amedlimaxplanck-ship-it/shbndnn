@@ -80,7 +80,7 @@ tabs.forEach(tab => {
 
 // AÇIKLAMA TOGGLE
 const toggleBtn = document.getElementById("toggleDesc");
-const descText = document.getElementById("descText");
+const descText = document.getElementById("ilanDesc");
 if (toggleBtn && descText) {
   toggleBtn.addEventListener("click", function () {
     descText.classList.toggle("expanded");
