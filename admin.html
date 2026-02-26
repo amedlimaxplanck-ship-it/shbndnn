@@ -22,12 +22,15 @@
 <div id="panel" style="display:none;">
   <h2>İlan Düzenle</h2>
 
-  <input type="text" id="title" placeholder="Başlık" class="input-field">
-  <input type="text" id="price" placeholder="Fiyat" class="input-field">
-  <textarea id="description" placeholder="Açıklama" class="input-field"></textarea>
-  <input type="file" id="image" class="input-field">
+ <input id="title" placeholder="İlan Başlığı">
+<input id="price" placeholder="Fiyat">
+<textarea id="description" placeholder="Açıklama"></textarea>
 
-  <button onclick="saveAd()" class="btn">Kaydet</button>
+<input id="image1" placeholder="Resim 1 URL">
+<input id="image2" placeholder="Resim 2 URL">
+<input id="image3" placeholder="Resim 3 URL">
+
+<button onclick="saveAd()">Kaydet</button>
 
   <h2 style="margin-top:30px;">Gelen Mesajlar</h2>
   <div id="messages"></div>
