@@ -14,6 +14,7 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 // TÜM VERİLERİ ÇEKME FONKSİYONU (İlan + İban + Özellikler)
+// script.js içindeki loadSiteData fonksiyonunu bununla güncelle
 async function loadSiteData() {
   const docRef = doc(db, "ilan", "ilan1");
   const docSnap = await getDoc(docRef);
@@ -21,32 +22,37 @@ async function loadSiteData() {
   if (docSnap.exists()) {
     const data = docSnap.data();
 
-    // 1. Ana Sayfa (index.html) Verileri
+    // Başlık ve Fiyat
     if (document.getElementById("ilanTitle")) {
-      document.getElementById("ilanTitle").innerText = data.title || "Başlık Yok";
-      document.getElementById("ilanPrice").innerText = (data.price || "0") + " TL";
-      document.getElementById("ilanDesc").innerText = data.description || "Açıklama yok.";
-      
-      // Dinamik İlan Özellikleri (Yeni Eklendi)
-      document.getElementById("ilanDateText").innerText = data.adDate || "-";
-      document.getElementById("ilanBrandText").innerText = data.brand || "-";
-      document.getElementById("ilanModelText").innerText = data.model || "-";
-      document.getElementById("ilanWarrantyText").innerText = data.warranty || "-";
+      document.getElementById("ilanTitle").innerText = data.title;
+      document.getElementById("ilanPrice").innerText = data.price + " TL";
+      document.getElementById("ilanDesc").innerText = data.description;
 
-      // Slider Resimleri
+      // DİNAMİK ÖZELLİKLERİ TABLOYA BASMA
+      const detailsDiv = document.querySelector(".details");
+      if (detailsDiv && data.features) {
+        detailsDiv.innerHTML = data.features.map(f => `
+          <div class="detail-row">
+            <span>${f.key}</span>
+            <span>${f.val}</span>
+          </div>
+        `).join('');
+      }
+
+      // Resimler
       const images = [data.image1, data.image2, data.image3].filter(Boolean);
       const slider = document.getElementById("slider");
-      if(slider && images.length > 0){
+      if(slider && images.length > 0) {
         slider.innerHTML = images.map(src => `<img src="${src}" class="slide">`).join('');
       }
     }
 
-    // 2. Satın Al Sayfası (satin-al.html) IBAN Verisi
     if (document.getElementById("ibanText")) {
-      document.getElementById("ibanText").innerText = data.iban || "IBAN Girilmedi";
+      document.getElementById("ibanText").innerText = data.iban || "IBAN Bekleniyor";
     }
   }
 }
+
 
 // Sayfa yüklendiğinde verileri çek
 loadSiteData();
