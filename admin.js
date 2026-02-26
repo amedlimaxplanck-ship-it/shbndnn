@@ -61,8 +61,9 @@ onAuthStateChanged(auth, async (user) => {
 });
 
 // İLAN VERİLERİ
+// loadAd fonksiyonu
 async function loadAd() {
-  const docRef = doc(db, "ilanlar", "ilan1");
+  const docRef = doc(db, "ilan", "ilan1"); // 'ilanlar' değil 'ilan' yaptık
   const docSnap = await getDoc(docRef);
 
   if (docSnap.exists()) {
@@ -73,25 +74,11 @@ async function loadAd() {
     document.getElementById("image1").value = data.image1 || "";
     document.getElementById("image2").value = data.image2 || "";
     document.getElementById("image3").value = data.image3 || "";
-    // loadAd() içine ekle
-document.getElementById("iban").value = data.iban || "";
-
-// saveAd() içine ekle
-const iban = document.getElementById("iban").value;
-
-await setDoc(doc(db, "ilan", "ilan1"), {
-  title,
-  price,
-  description,
-  image1,
-  image2,
-  image3,
-  iban  // buraya ekledik
-});
-   }
+    document.getElementById("iban").value = data.iban || ""; // IBAN buraya geliyor
+  }
 }
 
-// İLAN KAYDETME
+// saveAd fonksiyonu
 window.saveAd = async function() {
   const title = document.getElementById("title").value;
   const price = document.getElementById("price").value;
@@ -99,18 +86,24 @@ window.saveAd = async function() {
   const image1 = document.getElementById("image1").value;
   const image2 = document.getElementById("image2").value;
   const image3 = document.getElementById("image3").value;
+  const iban = document.getElementById("iban").value;
 
-  await setDoc(doc(db, "ilanlar", "ilan1"), {
-    title,
-    price,
-    description,
-    image1,
-    image2,
-    image3
-  });
-
-  alert("İlan güncellendi ✅");
+  try {
+    await setDoc(doc(db, "ilan", "ilan1"), { // 'ilanlar' değil 'ilan' yaptık
+      title,
+      price,
+      description,
+      image1,
+      image2,
+      image3,
+      iban // IBAN buraya kaydediliyor
+    });
+    alert("İlan ve IBAN başarıyla güncellendi ✅");
+  } catch (err) {
+    alert("Hata: " + err.message);
+  }
 }
+
 
 // MESAJLARI ÇEKME
 async function loadMessages() {
