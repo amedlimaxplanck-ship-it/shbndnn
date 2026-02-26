@@ -51,3 +51,53 @@ if (toggleBtn && descText) {
     toggleBtn.innerText = descText.classList.contains("expanded") ? "Daha az göster" : "Daha fazla göster";
   });
 }
+
+// Firebase setup
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyD-yn67AhKbiTExyrffBok2nthXhV_hL88",
+  authDomain: "shbndn-12640.firebaseapp.com",
+  projectId: "shbndn-12640",
+  storageBucket: "shbndn-12640.appspot.com",
+  messagingSenderId: "579355427179",
+  appId: "1:579355427179:web:2e7fafee98f9a7da2d0c2e",
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+// IBAN yükleme
+async function loadIban() {
+  const docRef = doc(db, "ilanlar", "ilan1"); // ilan collection değil, admin paneldeki ilanlar collection
+  const docSnap = await getDoc(docRef);
+
+  if (docSnap.exists()) {
+    const data = docSnap.data();
+    const ibanText = document.getElementById("ibanText");
+    if (ibanText) ibanText.innerText = data.iban || "TR12 3456 7890 1234 5678 9012 34";
+  }
+}
+
+loadIban();
+
+// IBAN kopyalama
+const copyBtn = document.getElementById("copyIbanBtn");
+const ibanText = document.getElementById("ibanText");
+
+if (copyBtn && ibanText) {
+  copyBtn.addEventListener("click", () => {
+    navigator.clipboard.writeText(ibanText.textContent.trim()).then(() => {
+      copyBtn.innerText = "Kopyalandı ✓";
+      copyBtn.style.background = "#28a745";
+
+      setTimeout(() => {
+        copyBtn.innerText = "Kopyala";
+        copyBtn.style.background = "#20c997";
+      }, 2000);
+    }).catch(() => {
+      alert("Kopyalama başarısız!");
+    });
+  });
+}
